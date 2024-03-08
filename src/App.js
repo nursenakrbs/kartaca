@@ -1,29 +1,18 @@
 import './App.css';
-import {Component} from "react";
-import {ComposableMap, Geographies, Geography} from "react-simple-maps";
-
-function WorldMap() {
-  return (
-      <div>
-          <ComposableMap>
-              <Geographies geography="/features.json">
-                  {({ geographies }) =>
-                      geographies.map((geo) => (
-                          <Geography key={geo.rsmKey} geography={geo} />
-                      ))
-                  }
-              </Geographies>
-          </ComposableMap>
-      </div>
-  );
-}
+import Home from "./Home";
+import { Routes, Route } from "react-router-dom"
+import CountryData from "./CountryData";
 
 function App() {
-  return (
-    <div className="App">
-      <WorldMap/>
-    </div>
-  );
+
+    return (
+        <div className="App">
+            <Routes>
+                <Route path="/" element={ <Home/> } />
+                <Route path="/Greenland" element={ <CountryData/> } />
+            </Routes>
+        </div>
+    );
 }
 
 export default App;
