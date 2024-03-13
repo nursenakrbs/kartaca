@@ -12,7 +12,6 @@ function CountryData() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [details, setDetails] = useState({});
-    //const store = configureStore({reducer: countrySelection});
 
     useEffect( () => {
        //console.log(store.getState());
