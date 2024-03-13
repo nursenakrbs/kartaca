@@ -67,9 +67,9 @@ function CountryData() {
             setSummary( {
                 "name": posts.data[0].region.name,
                 "iso": posts.data[0].region.iso,
-                "confirmed": confirmed,
-                "deaths": deaths,
-                "recovered": recovered,
+                "confirmed": confirmed.toLocaleString(undefined),
+                "deaths": deaths.toLocaleString(undefined),
+                "recovered": recovered.toLocaleString(undefined),
                 "lastUpdate": posts.data[0].last_update,
                 "regions": region
             });
@@ -84,7 +84,11 @@ function CountryData() {
         const data = posts.data;
         for(let el of data){
             if (el.region.province === e.target.value){
-                setDetails(el);
+                setDetails({
+                    "confirmed": el.confirmed.toLocaleString(undefined),
+                    "deaths": el.deaths.toLocaleString(undefined),
+                    "recovered": el.recovered.toLocaleString(undefined),
+                });
                 document.getElementById("provinceDetails").style.display="inline"
                 break;
             }

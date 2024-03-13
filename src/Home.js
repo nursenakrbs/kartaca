@@ -3,30 +3,34 @@ import React, {useCallback} from "react";
 import WorldMap from "react-svg-worldmap";
 import { useState } from "react";
 import  { CountryContext } from "react-svg-worldmap";
-import {configureStore} from "@reduxjs/toolkit";
-import countrySelection from "./countrySelection";
+import {countrySelection} from "./countrySelection";
 import Form from 'react-bootstrap/Form';
+import {useDispatch, useSelector} from "react-redux";
 
 function Home () {
+    const dispatch = useDispatch();
+    const arrayDataItems= useSelector(state=>state.country.countries);
     const [state, setState] = useState({
         cName: "Select Country",
         val: "",
     });
-    const store = configureStore({reducer: countrySelection});
+
+    //const store = configureStore();
     const [zoom, setZoom] = useState(0);
     const clickAction = useCallback(
         ({ countryCode, countryName }: CountryContext) => {
-            store.dispatch({
-                type: 'countrySelected',
-                countryName: countryName,
-                countryCode: countryCode
-            });
+            dispatch(countrySelection({
+                    countryName: countryName,
+                    countryCode: countryCode
+            }));
             setState({
                 cName: countryName,
                 val: countryCode,
             });
+            //setArrayDataItems(store.getState().countries);
+            //console.log(store.getState());
         },
-        [store],
+        [dispatch],
     );
     const stylingFunction = ({countryCode, color}: CountryContext) => {
         return {
@@ -62,8 +66,13 @@ function Home () {
                 class = "map"
                 role = "worldMap"
             />
-            <p>Country: {state.cName}</p>
-            <p>Country Code: {state.val}</p>
+            <div id="clickedList">
+                <h4>Clicked Countries:</h4>
+                {arrayDataItems.map(
+                    (selected) =>
+                        selected.countryName ==='' ? <p></p> : <p>{selected.countryName + " (" + selected.countryCode + ")"}</p>
+                )}
+            </div>
         </>
     );
 }
