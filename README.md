@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Uygulamaya Hosgeldiniz !
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Merhaba! Bu private repository Kartaca mülakati icin hazirlanan case study'yi sizlere sunuyorum. Web sayfasi React ve Redux teknolojileri kullanilarak yazildi. kodu tarafiniza cekebilir ve `npm install` ile modulleri indirebilir ve `npm start` komutu ile calistirabilirsiniz.
 
-## Available Scripts
+## Docker Image'ina Ulasma ve Calistirma Rehberi
 
-In the project directory, you can run:
+Uygulama dockerize edildi ve ulasiminiza acik olmasi adina Docker Hub'da public bir repoda tutuluyor. Tarafinizda calistirmaniz icin izlenmesi gereken adimlar su sekilde:
 
-### `npm start`
+1. Docker indirilmeli, `docker version` komutu ile versiyonunuzu kontrol edebilirsiniz.
+2. Docker Hub'da hesap acilmali ve `docker login` komutu ile giris yapilmali.
+3. `docker pull nkurubas/kartaca-nk:latest` komutu ile image'i tarafiniza cekmelisiniz.
+4. `docker run -dp 8000:3000 --name kartacapp nkurubas/kartaca-nk` komutu ile image'i calistirip http://localhost:8000 den uygulamaya erisilir.
+5. `docker exec -it kartacapp /bin/sh` komutu ile container terminaline baglanabilirsiniz.
+6. Container'i durdurmak icin `docker stop kartacapp` ve baslatmak icin `docker start kartacapp` komutlari, silmek icin ise durdurduktan sonra `docker rm kartacapp` komutu kullanilir.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Uygulama Özellikleri
 
-### `npm test`
+- Uygulama ana sayfasinda yer alan harita kullanici tarafindan yakinlastirilabilir ve uzaklastirilabilir.
+- Redux kullanmis olmak amaciyla ana sayfada haritanin altinda tiklanan ulkelerin bir listesi kullanici ile paylasiliyor.
+- Tiklanan ulkenin detaylari yeni sekmede, ulkeye ozel bir url ile aciliyor. Bu sayfaya ulkeye tiklamadan, yalnzica url ile de erisim saglanabilir.
+- Ülkedeki vakalara dair detaylar API'dan cekilip kullanici ile paylasilir. Ulkenin bolge/sehir/eyalet verisi varsa kullanici bu bolgeleri menuden secebilir, ve o bolgenin vaka sayilari da formatli bir sekilde goruntulenebilir.
+- Uygulama dili belirtilmedigi icin kullandigim klavyede Turkce harfler bulunmamasi sebebiyle Ingilizce olarak tasarlandi.
+- Ulke detayi sayfasinda internet baglanti sorunu veya sorgulanan ulkeye dair bilgi olmamasi durumunda kullanici hataya dair bilgilendiriliyor.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Yapilacaklar
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Kullandigimiz API'da bazi ulkelerin verileri bulunmuyor (Orn. Greenland) ve "recovered" yani iyilesen vaka sayilari butun ulkelerde 0 olarak gozukuyor. Zaman kisitlamasi dolayisiyla yeni bir API arastirmadim fakat gelecekte uygulama gelistirilmek istenirse farkli bir API'a gecilebilir.
+- Testleri Jest'in calismasinda sorun ciktigi icin calistiramadim ve düzeltmeye vaktim olmadi. Zaman olursa daha cok test eklenebilir ve var olanlar test edilebilir.
