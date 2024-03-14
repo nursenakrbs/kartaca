@@ -27,3 +27,5 @@ Uygulama dockerize edildi ve ulasiminiza acik olmasi adina Docker Hub'da public 
 
 - Kullandigimiz API'da bazi ulkelerin verileri bulunmuyor (Orn. Greenland) ve "recovered" yani iyilesen vaka sayilari butun ulkelerde 0 olarak gozukuyor. Zaman kisitlamasi dolayisiyla yeni bir API arastirmadim fakat gelecekte uygulama gelistirilmek istenirse farkli bir API'a gecilebilir.
 - Testleri Jest'in calismasinda sorun ciktigi icin calistiramadim ve düzeltmeye vaktim olmadi. Zaman olursa daha cok test eklenebilir ve var olanlar test edilebilir.
+
+Not: Bu repository'ye kod push'layan anon4258 hesabi bana aittir, kisisel hesabim askiya alindiginda acil durumlarda kullaniyorum.
